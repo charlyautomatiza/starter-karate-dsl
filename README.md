@@ -29,7 +29,7 @@ Descargar e instalar
 
     mvn clean test
 
-Para ejecutar un test específico, por ejemplo del feature [users.feature](src\test\java\examples\users\users.feature) aquellos casos con el tag **@create_user**.
+Para ejecutar un test específico, por ejemplo del feature [users.feature](src/test/java/examples/users/users.feature) aquellos casos con el tag **@create_user**.
 
     mvn test "-Dkarate.options=--tags @create_user"
 
