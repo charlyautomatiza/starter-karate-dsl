@@ -4,7 +4,7 @@
     </a>
 </p>
 
-# API Test Automation - Karate DSL
+# API Test Automation - Karate DSL For Restful and GraphQL APIs
 ## Starter project creado en vivo en stream de Twitch de [@CharlyAutomatiza](https://www.twitch.tv/charlyautomatiza) basado en [Karate DSL](https://karatelabs.github.io/karate/).
 
 ### Requerimientos generales
@@ -29,10 +29,19 @@ Descargar e instalar
 
     mvn clean test
 
-Para ejecutar un test específico, por ejemplo del feature [users.feature](src/test/java/examples/users/users.feature) aquellos casos con el tag **@create_user**.
+Para ejecutar un test específico de API Rest, por ejemplo del feature [users.feature](src/test/java/examples/users/users.feature) aquellos casos con el tag **@create_user**.
 
-    mvn test "-Dkarate.options=--tags @create_user"
+    mvn clean test "-Dkarate.options=--tags @create_user"
 
+Para ejecutar un test específico de API GraphQL, por ejemplo del feature [users-gql.feature](src/test/java/examples/usersgql/users-gql.feature) aquellos casos con el tag **@graphql_examples**.
+
+    mvn clean test "-Dkarate.options=--tags @graphql_examples"
+
+Para ejecutar todos los tests tanto de API Rest como de GraphQL se puede ejecutar con el tag **@run**.
+
+    mvn clean test "-Dkarate.options=--tags @run"
+
+**Importante**: Se agrega un test fallido para tener ejemplo de como se visualizan los errores en el reporte.
 
 **El reporte unificado de los resultados de los test**
 
