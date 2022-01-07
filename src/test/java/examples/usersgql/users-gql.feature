@@ -53,4 +53,4 @@ Examples:
     | variables | username  | address                                |
     | { id: 1 } | Bret      | { geo:{ lng: 81.1496, lat: -37.3159 } }|
     | { id: 2 } | Antonette | { geo:{ lat:-43.9509, lng: -34.4618 } }|
-    | { id: 3 } | Samantha  | { geo:{ lat:-68.6102, lng: -47.0653 } }|
+    | { id: 3 } | Samantha  | { geo:{ lat:-68.6102, lng: -34.4618 } }|
