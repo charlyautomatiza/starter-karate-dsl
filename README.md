@@ -5,7 +5,7 @@
 </p>
 
 # API Test Automation - Karate DSL For Restful and GraphQL APIs
-## Starter project creado en vivo en stream de Twitch de [@CharlyAutomatiza](https://www.twitch.tv/charlyautomatiza) basado en [Karate DSL](https://karatelabs.github.io/karate/).
+## Starter project creado en vivo en stream de [Twitch.tv/CharlyAutomatiza](https://www.twitch.tv/charlyautomatiza) basado en [Karate DSL](https://karatelabs.github.io/karate/).
 
 ### Requerimientos generales
 
@@ -48,3 +48,14 @@ Para ejecutar todos los tests tanto de API Rest como de GraphQL se puede ejecuta
 Luego de cada ejecución se genera dentro de la carpeta **target/karate-reports** los reportes en formato html.
 
 Para más detalle se puede consultar [la documetación oficial](https://karatelabs.github.io/karate/#test-reports)
+
+### Github Actions para ejecutar los test de APIs
+
+Nueva carpeta [**.github/workflows**](.github/workflows) con el archivo [**karate-test-runner.yml**](.github/workflows/karate-test-runner.yml) para ejecutar nuestros tests desde un pipeline de Github Actions.
+
+JUnit Report obtenido desde [Marketplace de GitHub](https://github.com/marketplace/actions/junit-report-action)
+
+El workflow está configurado para que se ejecute antes 2 eventos:
+
+* **push**: cuando se hace un push a un repositorio
+* **pull_request**: cuando se hace un pull request
