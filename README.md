@@ -55,7 +55,6 @@ Nueva carpeta [**.github/workflows**](.github/workflows) con el archivo [**karat
 
 JUnit Report obtenido desde [Marketplace de GitHub](https://github.com/marketplace/actions/junit-report-action)
 
-El workflow está configurado para que se ejecute antes 2 eventos:
+El workflow está configurado para que se ejecute ante el siguiente evento:
 
 * **push**: cuando se hace un push a un repositorio
-* **pull_request**: cuando se hace un pull request

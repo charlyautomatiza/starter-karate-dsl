@@ -1,6 +1,6 @@
 name: Karate Test Runner
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
