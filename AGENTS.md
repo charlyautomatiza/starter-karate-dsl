@@ -57,7 +57,7 @@ It defines the specialized agents available for this Karate DSL project.
 
 | Skill | Location | Purpose |
 |-------|----------|---------|
-| `karate-core` | `.github/skills/karate-core/SKILL.md` | Core Karate syntax, matchers, schema assertions, upgrade roadmap |
+| `karate-core` | `.agents/skills/karate-core/SKILL.md` | Core Karate syntax, matchers, schema assertions, upgrade roadmap |
 
 ---
 

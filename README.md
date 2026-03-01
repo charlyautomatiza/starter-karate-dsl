@@ -82,16 +82,16 @@ El workflow está configurado para que se ejecute ante el siguiente evento:
 
 1. Instalar el plugin **Karate** desde *Settings → Plugins → Marketplace*.
 2. Hacer clic derecho sobre cualquier `.feature` o `Scenario` → **Run / Debug**.
-3. Para debugging remoto, agregar la configuración de JVM en el runner JUnit 5:
-
-```java
-// src/test/java/examples/ExamplesTest.java — agregar argLine para debug remoto
-// Ejecutar con: mvn test -Dmaven.surefire.debug
-```
+3. Para debugging remoto con Maven Surefire:
+   - Ejecutar: `mvn -Dmaven.surefire.debug test`
+   - En IntelliJ, crear una configuración **Run → Edit Configurations… → Remote JVM Debug** apuntando al puerto `5005` (puerto por defecto de Surefire).
+   - Adjuntar el debugger cuando Maven muestre el mensaje de espera de depuración.
 
 ---
 
 ### Ejecución en CI/CD con Tags Dinámicos
+
+> **Nota**: Los tags `@smoke`, `@regression` y `@wip` son convenciones sugeridas. Para que los comandos seleccionen tests, los escenarios correspondientes deben estar etiquetados en los `.feature` files.
 
 Ejecutar todos los tests del pipeline:
 
@@ -128,7 +128,7 @@ Este repositorio incluye contexto de IA estructurado según el protocolo de Anth
 | Archivo | Ubicación | Propósito |
 |---------|-----------|-----------|
 | `AGENTS.md` | `/AGENTS.md` | Define los agentes de IA disponibles (Automation Agent, Performance & Mock Agent) |
-| `SKILL.md` | `.github/skills/karate-core/SKILL.md` | Sintaxis moderna, fuzzy matchers, aserciones de schema, roadmap de upgrade |
+| `SKILL.md` | `.agents/skills/karate-core/SKILL.md` | Sintaxis moderna, fuzzy matchers, aserciones de schema, roadmap de upgrade |
 | `copilot-instructions.md` | `.github/copilot-instructions.md` | Reglas estrictas de generación de código para Copilot |
 
 #### Cómo invocar los Skills en Copilot Chat
@@ -138,7 +138,7 @@ Este repositorio incluye contexto de IA estructurado según el protocolo de Anth
 ```
 
 ```
-@workspace Basándote en .github/skills/karate-core/SKILL.md, genera un nuevo scenario para el endpoint /posts con validación de schema
+@workspace Basándote en .agents/skills/karate-core/SKILL.md, genera un nuevo scenario para el endpoint /posts con validación de schema
 ```
 
 ```
@@ -147,4 +147,4 @@ Este repositorio incluye contexto de IA estructurado según el protocolo de Anth
 
 #### Skills disponibles
 
-- **karate-core** (`.github/skills/karate-core/SKILL.md`): Sintaxis nativa Karate, matchers avanzados, schema assertions, guía de migración a 2026.
+- **karate-core** (`.agents/skills/karate-core/SKILL.md`): Sintaxis nativa Karate, matchers avanzados, schema assertions, guía de migración a 2026.

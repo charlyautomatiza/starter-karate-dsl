@@ -36,7 +36,8 @@ Karate provides built-in support for:
 - Waiting / retry (`retry until`, `waitFor()`)
 
 Only create Java classes when absolutely necessary (e.g., proprietary encryption libraries,
-JDBC connections not achievable via Karate's built-in `karate.call()`).
+or when Karate's HTTP + config + JavaScript capabilities truly cannot handle the requirement,
+such as JDBC helpers exposed via Java interop with `Java.type('com.example.DbHelper')`).
 
 ### Rule 3 — GraalVM-Safe JavaScript
 
@@ -44,7 +45,8 @@ JDBC connections not achievable via Karate's built-in `karate.call()`).
 
 When writing JS in `.feature` files or `karate-config.js`:
 - Use `Java.type('com.example.Foo')` for Java interop.
-- Use `karate.properties['ENV_VAR']` instead of `java.lang.System.getenv()`.
+- For JVM system properties (`-Dname=value`), use `karate.properties['name']` or `Java.type('java.lang.System').getProperty('name')`.
+- For OS environment variables, use `Java.type('java.lang.System').getenv('MY_VAR')` (centralise in `karate-config.js`).
 - Keep functions wrapped in `function fn() { ... }` to avoid scope pollution.
 
 ---
@@ -160,8 +162,8 @@ mvn clean test "-Dkarate.options=--tags @run"
 
 ## 🤖 AI Skill Context
 
-For deeper Karate-specific context, load the skill files defined in `.github/skills/`:
+For deeper Karate-specific context, load the skill files defined in `.agents/skills/`:
 
-- **karate-core**: `.github/skills/karate-core/SKILL.md` — syntax, matchers, schema assertions, upgrade roadmap.
+- **karate-core**: `.agents/skills/karate-core/SKILL.md` — syntax, matchers, schema assertions, upgrade roadmap.
 
 Agent definitions are in [`AGENTS.md`](../AGENTS.md) at the repository root.
