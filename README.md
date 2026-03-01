@@ -66,3 +66,85 @@ JUnit Report obtenido desde [Marketplace de GitHub](https://github.com/marketpla
 El workflow está configurado para que se ejecute ante el siguiente evento:
 
 * **push**: cuando se hace un push a un repositorio
+
+---
+
+### Karate Debugger — VS Code / IntelliJ
+
+#### VS Code
+
+1. Instalar la extensión oficial **Karate Runner** (`karatelabs.karate`).
+2. Abrir cualquier archivo `.feature` — aparecerá el botón **▷ Run | Debug** encima de cada `Scenario`.
+3. Para debugging con breakpoints, hacer clic en **Debug** en lugar de **Run**.
+4. El debugger se conecta automáticamente al puerto `8000` (configurable en los settings de la extensión).
+
+#### IntelliJ IDEA
+
+1. Instalar el plugin **Karate** desde *Settings → Plugins → Marketplace*.
+2. Hacer clic derecho sobre cualquier `.feature` o `Scenario` → **Run / Debug**.
+3. Para debugging remoto con Maven Surefire:
+   - Ejecutar: `mvn -Dmaven.surefire.debug test`
+   - En IntelliJ, crear una configuración **Run → Edit Configurations… → Remote JVM Debug** apuntando al puerto `5005` (puerto por defecto de Surefire).
+   - Adjuntar el debugger cuando Maven muestre el mensaje de espera de depuración.
+
+---
+
+### Ejecución en CI/CD con Tags Dinámicos
+
+> **Nota**: Los tags `@smoke`, `@regression` y `@wip` son convenciones sugeridas. Para que los comandos seleccionen tests, los escenarios correspondientes deben estar etiquetados en los `.feature` files.
+
+Ejecutar todos los tests del pipeline:
+
+    mvn clean test "-Dkarate.options=--tags @run"
+
+Ejecutar sólo tests de smoke:
+
+    mvn clean test "-Dkarate.options=--tags @smoke"
+
+Ejecutar regresión completa:
+
+    mvn clean test "-Dkarate.options=--tags @regression"
+
+Excluir tests en progreso:
+
+    mvn clean test "-Dkarate.options=--tags @run and not @wip"
+
+Especificar entorno de ejecución:
+
+    mvn clean test -Dkarate.env=staging "-Dkarate.options=--tags @run"
+
+Ejecutar en paralelo (por ejemplo, 5 threads):
+
+    mvn clean test -Dkarate.options="--tags @run" -Dkarate.threads=5
+
+---
+
+### AI Co-pilot — Skills Instalados
+
+Este repositorio incluye contexto de IA estructurado según el protocolo de Anthropic para que GitHub Copilot y otros asistentes ofrezcan sugerencias precisas para Karate DSL.
+
+#### Archivos de contexto
+
+| Archivo | Ubicación | Propósito |
+|---------|-----------|-----------|
+| `AGENTS.md` | `/AGENTS.md` | Define los agentes de IA disponibles (Automation Agent, Performance & Mock Agent) |
+| `SKILL.md` | `.agents/skills/karate-core/SKILL.md` | Sintaxis moderna, fuzzy matchers, aserciones de schema, roadmap de upgrade |
+| `copilot-instructions.md` | `.github/copilot-instructions.md` | Reglas estrictas de generación de código para Copilot |
+
+#### Cómo invocar los Skills en Copilot Chat
+
+```
+@workspace /explain Carga el skill karate-core y explica cómo usar fuzzy matchers en este proyecto
+```
+
+```
+@workspace Basándote en .agents/skills/karate-core/SKILL.md, genera un nuevo scenario para el endpoint /posts con validación de schema
+```
+
+```
+@workspace Revisa users.feature y sugiere mejoras usando los patrones definidos en AGENTS.md
+```
+
+#### Skills disponibles
+
+- **karate-core** (`.agents/skills/karate-core/SKILL.md`): Sintaxis nativa Karate, matchers avanzados, schema assertions, guía de migración a 2026.
